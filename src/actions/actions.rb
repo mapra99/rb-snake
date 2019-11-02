@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Actions
   def self.move_snake(state)
     next_direction = state.next_direction
@@ -15,13 +17,20 @@ module Actions
   private
 
   def calc_next_position(state)
+    curr_position = state.snake.positions.first
     case state.next_direction
     when UP
-      Model::Coord.new(curr_position.row-1,
-            curr_position.col)
+      Model::Coord.new(curr_position.row - 1,
+                       curr_position.col)
     when RIGHT
+      Model::Coord.new(curr_position.row,
+                       curr_position.col + 1)
     when DOWN
+      Model::Coord.new(curr_position.row + 1,
+                       curr_position.col)
     when LEFT
+      Model::Coord.new(curr_position.row,
+                       curr_position.col - 1)
     end
   end
 end
