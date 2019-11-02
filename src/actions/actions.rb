@@ -14,25 +14,25 @@ module Actions
 
   private
 
-  def calc_next_position(state)
+  def self.calc_next_position(state)
     curr_position = state.snake.positions.first
     case state.next_direction
-    when UP
+    when Model::Direction::UP
       Model::Coord.new(curr_position.row - 1,
                        curr_position.col)
-    when RIGHT
+    when Model::Direction::RIGHT
       Model::Coord.new(curr_position.row,
                        curr_position.col + 1)
-    when DOWN
+    when Model::Direction::DOWN
       Model::Coord.new(curr_position.row + 1,
                        curr_position.col)
-    when LEFT
+    when Model::Direction::LEFT
       Model::Coord.new(curr_position.row,
                        curr_position.col - 1)
     end
   end
 
-  def position_is_valid?(state, position)
+  def self.position_is_valid?(state, position)
     # verificar que esté en la grilla
     is_invalid = ((position.row >= state.grid.rows) || (position.row < 0)) ||
                  ((position.col >= state.grid.cols) || (position.col < 0))
@@ -43,12 +43,14 @@ module Actions
     !(state.snake.positions.include? position)
   end
 
-  def move_snake_to(state, next_position)
+  def self.move_snake_to(state, next_position)
     new_positions = [next_position] + state.snake.positions[0...-1]
     state.snake.positions = new_positions
+
+    state
   end
 
-  def end_game(state)
+  def self.end_game(state)
     state.game_finished = true
     state
   end
