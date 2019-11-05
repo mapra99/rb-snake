@@ -5,7 +5,9 @@ module Actions
     next_direction = state.curr_direction
     next_position = calc_next_position(state)
 
-    if position_is_valid? state, next_position
+    if position_is_food? state, next_position
+      grow_snake_to state, next_position
+    elsif position_is_valid? state, next_position
       move_snake_to state, next_position
     else
       end_game state
@@ -42,8 +44,12 @@ module Actions
     end
   end
 
+  def self.position_is_food?(state, next_position)
+    (state.food.row == next_position.row) && (state.food.col == next_position.col)
+  end
+
   def self.position_is_valid?(state, position)
-    # verificar que esté en la grilla
+    # verificar que este en la grilla
     is_invalid = ((position.row >= state.grid.rows) || (position.row < 0)) ||
                  ((position.col >= state.grid.cols) || (position.col < 0))
 
@@ -51,6 +57,11 @@ module Actions
 
     # verificar que no este superponiendo a la serpiente
     !(state.snake.positions.include? position)
+  end
+
+  def self.grow_snake_to(state, next_position)
+    state.snake.positions = [next_position] + state.snake.positions
+    state
   end
 
   def self.move_snake_to(state, next_position)
