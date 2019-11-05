@@ -55,4 +55,14 @@ class ActionsTest < Minitest::Test
     actual_state = Actions::change_direction(@initial_state, Model::Direction::LEFT)
     assert_equal actual_state, expected_state
   end
+
+  def test_snake_grow
+    @initial_state.food = Model::Food.new(2,1)
+
+    expected_state = Model::Snake.new([Model::Coord.new(2, 1),
+                                       Model::Coord.new(1, 1),
+                                       Model::Coord.new(0, 1)])
+    actual_state = Actions::change_direction(@initial_state, Model::Direction::LEFT)
+    assert_equal actual_state.snake, expected_state
+  end
 end
