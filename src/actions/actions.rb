@@ -28,7 +28,8 @@ module Actions
   private
 
   def self.generate_food(state)
-    
+    new_food = Model::Food.new(rand(state.grid.rows), rand(state.grid.cols))
+    state.food = new_food
     state
   end
 
