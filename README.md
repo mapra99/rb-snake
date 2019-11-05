@@ -1,7 +1,8 @@
 # Snake!
 
 This is a Ruby adapted version of the Snake classic game, using [Ruby2d](https://www.ruby2d.com) gem
-[Imgur](https://i.imgur.com/wC6W4VH.png)
+
+![](https://i.imgur.com/wC6W4VH.png)
 
 # Requisites
 * Ruby - Version 2.x
