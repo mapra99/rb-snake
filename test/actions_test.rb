@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'minitest/autorun'
+require 'minitest/mock'
 require_relative '../src/actions/actions'
 require_relative '../src/model/state'
 require 'byebug'
@@ -64,5 +65,22 @@ class ActionsTest < Minitest::Test
                                        Model::Coord.new(0, 1)])
     actual_state = Actions::move_snake(@initial_state)
     assert_equal actual_state.snake, expected_state
+  end
+
+  def test_generate_food
+    @initial_state.food = Model::Food.new(2, 1)
+    expected_state = Model::State.new(
+      Model::Snake.new([Model::Coord.new(2, 1),
+                        Model::Coord.new(1, 1)]),
+      Model::Food.new(0, 0),
+      Model::Grid.new(8, 12),
+      Model::Direction::DOWN,
+      false
+    )
+
+    Actions::stub(:rand, 0) do
+      actual_state = Actions::move_snake(@initial_state)
+      assert_equal actual_state.food, expected_state.food
+    end
   end
 end
