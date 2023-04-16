@@ -1,36 +1,13 @@
 AllCops:
-  Exclude:
-    - "bin/*"
-    - "db/**/*"
-    - "config/**/*"
-    - "Guardfile"
-    - "Rakefile"
-  DisplayCopNames: true
+  TargetRubyVersion: 2.6
 
-Metrics/LineLength:
-  Max: 120
-Metrics/MethodLength:
-  Include: ["app/controllers/*"]
-  Max: 20
-Metrics/AbcSize:
-  Include: ["app/controllers/*"]
-  Max: 30
-Metrics/ClassLength:
-  Max: 150
-Metrics/BlockLength:
-  ExcludedMethods: ['describe']
-
-Style/Documentation:
-  Enabled: false
-Style/ClassAndModuleChildren:
-  Enabled: false
-
-Layout/AlignHash:
-  EnforcedColonStyle: key
-Layout/ExtraSpacing:
-  AllowForAlignment: false
-Layout/MultilineMethodCallIndentation:
+Style/StringLiterals:
   Enabled: true
-  EnforcedStyle: indented
-Layout/EndOfLine:
-  EnforcedStyle: lf
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Layout/LineLength:
+  Max: 120
