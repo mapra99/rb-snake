@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rb::Snake do
+RSpec.describe RbSnake do
   it "has a version number" do
-    expect(Rb::Snake::VERSION).not_to be nil
+    expect(RbSnake::VERSION).not_to be nil
   end
 
   it "does something useful" do
