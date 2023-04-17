@@ -1,6 +1,8 @@
-# Rb::Snake
+# rb-snake
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rb/snake`. To experiment with that code, run `bin/console` for an interactive prompt.
+This is a Ruby adapted version of the Snake classic game, using [Ruby2d](https://www.ruby2d.com) gem
+
+![](https://i.imgur.com/wC6W4VH.png)
 
 TODO: Delete this and the text above, and describe your gem
 
