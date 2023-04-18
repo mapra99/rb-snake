@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'view/ruby2d'
-require_relative 'model/state'
-require_relative 'actions/actions'
+require_relative "view/ruby2d"
+require_relative "model/state"
+require_relative "actions/actions"
 
 module RbSnake
   class App
@@ -20,11 +20,11 @@ module RbSnake
     def init_timer(view)
       loop do
         if @state.game_finished
-          puts 'Juego Finalizado'
+          puts "Juego Finalizado"
           puts "Puntaje: #{@state.snake.positions.length}"
           break
         end
-        @state = Actions::move_snake(@state)
+        @state = Actions.move_snake(@state)
         view.render(@state)
         sleep 0.1
       end
@@ -32,10 +32,10 @@ module RbSnake
 
     def send_action(action, params)
       new_state = Actions.send(action, @state, params)
-      if new_state.hash != @state
-        @state = new_state
-        @view.render(@state)
-      end
+      return unless new_state.hash != @state
+
+      @state = new_state
+      @view.render(@state)
     end
   end
 end

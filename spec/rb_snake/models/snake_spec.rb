@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "spec_helper"
 require "rb_snake/models/snake"
 require "rb_snake/models/coordinate"
