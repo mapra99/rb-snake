@@ -9,6 +9,10 @@ module RbSnake
         @row = row
         @col = col
       end
+
+      def eql?(other)
+        row == other.row && col == other.col
+      end
     end
   end
 end

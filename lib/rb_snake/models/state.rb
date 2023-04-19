@@ -24,11 +24,19 @@ module RbSnake
           snake: Snake.new(
             body: [Coordinate.new(row: 1, col: 1), Coordinate.new(row: 0, col: 1)]
           ),
-          food: Food.new(row: 4, col: 4),
-          grid: Grid.new(rows: 8, cols: 12),
+          food: Food.new(row: 10, col: 1),
+          grid: Grid.new(rows: 12, cols: 24),
           current_direction: Direction::DOWN,
           game_finished: false
         )
+      end
+
+      def game_score
+        snake.positions.length
+      end
+
+      def update_direction(new_direction)
+        @current_direction = new_direction
       end
     end
   end
