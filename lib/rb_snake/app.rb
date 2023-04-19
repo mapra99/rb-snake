@@ -29,8 +29,6 @@ module RbSnake
     #   @view.render(@state)
     # end
 
-    private
-
     # def init_timer(view)
     #   loop do
     #     if @state.game_finished
