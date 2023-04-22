@@ -10,7 +10,7 @@ module RbSnake
           food = state.food
           grid = state.grid
 
-          next_position = snake.next_position(current_direction)
+          next_position = snake.next_position(current_direction, grid)
           if next_position.eql?(food.location)
             snake.eat(food)
             food.regenerate(snake, grid)

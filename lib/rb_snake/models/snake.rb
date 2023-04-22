@@ -21,7 +21,7 @@ module RbSnake
         update_first_rendered_position(&block)
       end
 
-      def next_position(direction)
+      def next_position(direction, grid)
         new_row = head.row
         new_col = head.col
 
@@ -37,6 +37,13 @@ module RbSnake
         else
           raise StandardError, "direction #{direction} not recognized"
         end
+
+
+        new_row = 0 if new_row >= grid.rows
+        new_row = grid.rows - 1 if new_row.negative?
+
+        new_col = 0 if new_col >= grid.cols
+        new_col = grid.cols - 1 if new_col.negative?
 
         Coordinate.new(row: new_row, col: new_col)
       end
