@@ -4,7 +4,7 @@ module RbSnake
   module Actions
     class MoveSnake
       class << self
-        def call(state)
+        def call(state, window)
           snake = state.snake
           current_direction = state.current_direction
           food = state.food
@@ -17,6 +17,8 @@ module RbSnake
           else
             snake.move_to(next_position)
           end
+
+          window.render(state)
         end
       end
     end

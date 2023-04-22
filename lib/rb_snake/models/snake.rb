@@ -6,18 +6,19 @@ require "rb_snake/models/coordinate"
 module RbSnake
   module Models
     class Snake
+      RenderedBodyElem = Struct.new(:elem, :position)
+
       attr_reader :body
 
       def initialize(body:)
         @body = body
       end
 
-      def render(window)
-        rendered_body.each { |elem| window.remove(elem) } if rendered_body&.length&.positive?
+      def render(window, &block)
+        return build_rendered_body(&block) if rendered_body.nil?
 
-        @rendered_body = body.map do |position|
-          yield(position.row, position.col)
-        end
+        update_last_rendered_position(window)
+        update_first_rendered_position(&block)
       end
 
       def next_position(direction)
@@ -53,6 +54,28 @@ module RbSnake
 
       def head
         body.first
+      end
+
+      def build_rendered_body(&block)
+        @rendered_body = body.map do |position|
+          elem = block.call(position.row, position.col)
+          RenderedBodyElem.new(elem, position)
+        end
+      end
+
+      def update_last_rendered_position(window)
+        return if rendered_body.last.position == body.last
+
+        window.remove(rendered_body.last.elem)
+        rendered_body.pop
+      end
+
+      def update_first_rendered_position(&block)
+        return if rendered_body.first.position == body.first
+
+        new_position = body.first
+        elem = block.call(new_position.row, new_position.col)
+        rendered_body.unshift(RenderedBodyElem.new(elem, new_position))
       end
 
       attr_reader :rendered_body
