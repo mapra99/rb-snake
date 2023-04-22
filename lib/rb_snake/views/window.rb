@@ -8,12 +8,9 @@ require "rb_snake/actions/change_direction"
 module RbSnake
   module Views
     class Window
-      attr_reader :app
-
       PIXEL_SIZE = 50
 
-      def initialize(app)
-        @app = app
+      def initialize
         @ruby2d_window = Ruby2D::Window.new
       end
 

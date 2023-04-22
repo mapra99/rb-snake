@@ -12,8 +12,7 @@ module RbSnake
     end
 
     def start
-      @window = Views::Window.new(self)
-
+      @window = Views::Window.new
       window.start(state)
     end
   end
