@@ -38,12 +38,8 @@ module RbSnake
           raise StandardError, "direction #{direction} not recognized"
         end
 
-
-        new_row = 0 if new_row >= grid.rows
-        new_row = grid.rows - 1 if new_row.negative?
-
-        new_col = 0 if new_col >= grid.cols
-        new_col = grid.cols - 1 if new_col.negative?
+        new_row = truncate_row(new_row, grid)
+        new_col = truncate_col(new_col, grid)
 
         Coordinate.new(row: new_row, col: new_col)
       end
@@ -83,6 +79,20 @@ module RbSnake
         new_position = body.first
         elem = block.call(new_position.row, new_position.col)
         rendered_body.unshift(RenderedBodyElem.new(elem, new_position))
+      end
+
+      def truncate_row(new_row, grid)
+        return 0 if new_row >= grid.rows
+        return grid.rows - 1 if new_row.negative?
+
+        new_row
+      end
+
+      def truncate_col(new_col, grid)
+        return 0 if new_col >= grid.cols
+        return grid.cols - 1 if new_col.negative?
+
+        new_col
       end
 
       attr_reader :rendered_body
