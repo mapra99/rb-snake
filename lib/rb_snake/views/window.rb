@@ -56,7 +56,7 @@ module Views
       tick = 0
 
       ruby2d_window.update do
-        ::RbSnake::Actions::MoveSnake.call(state, self) if (tick % 5).zero?
+        ::RbSnake::Actions::MoveSnake.call(state, self) if (tick % state.speed_factor).zero?
 
         if state.game_finished
           ruby2d_window.close
