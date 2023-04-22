@@ -21,7 +21,7 @@ module RbSnake
         update_first_rendered_position(&block)
       end
 
-      def next_position(direction)
+      def next_position(direction, grid)
         new_row = head.row
         new_col = head.col
 
@@ -37,6 +37,9 @@ module RbSnake
         else
           raise StandardError, "direction #{direction} not recognized"
         end
+
+        new_row = truncate_row(new_row, grid)
+        new_col = truncate_col(new_col, grid)
 
         Coordinate.new(row: new_row, col: new_col)
       end
@@ -76,6 +79,20 @@ module RbSnake
         new_position = body.first
         elem = block.call(new_position.row, new_position.col)
         rendered_body.unshift(RenderedBodyElem.new(elem, new_position))
+      end
+
+      def truncate_row(new_row, grid)
+        return 0 if new_row >= grid.rows
+        return grid.rows - 1 if new_row.negative?
+
+        new_row
+      end
+
+      def truncate_col(new_col, grid)
+        return 0 if new_col >= grid.cols
+        return grid.cols - 1 if new_col.negative?
+
+        new_col
       end
 
       attr_reader :rendered_body
