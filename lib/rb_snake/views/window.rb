@@ -24,6 +24,16 @@ module Views
       ruby2d_window.show
     end
 
+    def render(state)
+      state.food.render(ruby2d_window) do |row, col|
+        render_square(row: row, col: col, color: "yellow")
+      end
+
+      state.snake.render(ruby2d_window) do |row, col|
+        render_square(row: row, col: col, color: "green")
+      end
+    end
+
     private
 
     attr_reader :ruby2d_window
@@ -46,10 +56,7 @@ module Views
       tick = 0
 
       ruby2d_window.update do
-        if (tick % 5).zero?
-          render(state)
-          ::RbSnake::Actions::MoveSnake.call(state)
-        end
+        ::RbSnake::Actions::MoveSnake.call(state, self) if (tick % 5).zero?
 
         if state.game_finished
           ruby2d_window.close
@@ -59,16 +66,6 @@ module Views
         end
 
         tick += 1
-      end
-    end
-
-    def render(state)
-      state.food.render(ruby2d_window) do |row, col|
-        render_square(row: row, col: col, color: "yellow")
-      end
-
-      state.snake.render(ruby2d_window) do |row, col|
-        render_square(row: row, col: col, color: "green")
       end
     end
 

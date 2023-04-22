@@ -7,13 +7,19 @@ module RbSnake
     class Food
       attr_reader :location
 
+      RenderedElement = Struct.new(:elem, :location)
+
       def initialize(row:, col:)
         @location = Coordinate.new(row: row, col: col)
       end
 
       def render(window)
-        window.remove(rendered_element) if rendered_element
-        @rendered_element = yield(location.row, location.col)
+        return if rendered_element&.location == location
+
+        window.remove(rendered_element.elem) if rendered_element
+
+        elem = yield(location.row, location.col)
+        @rendered_element = RenderedElement.new(elem, location)
       end
 
       def regenerate(snake, grid)
