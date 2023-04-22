@@ -31,8 +31,12 @@ module RbSnake
         )
       end
 
+      def finish_game!
+        @game_finished = true
+      end
+
       def game_score
-        snake.positions.length
+        snake.body.length
       end
 
       def update_direction(new_direction)
