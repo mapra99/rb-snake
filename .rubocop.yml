@@ -23,3 +23,6 @@ Metrics/MethodLength:
 
 Metrics/ParameterLists:
   Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
