@@ -35,7 +35,7 @@ jobs:
       name: auto commit action
       with:
         skip_fetch: false
-        branch: main
+        branch: master
         commit_message: Bump version to ${{ github.event.release.name }}
 
     - name: Publish to RubyGems
