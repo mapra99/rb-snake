@@ -4,21 +4,15 @@ This is a Ruby adapted version of the Snake classic game, using [Ruby2d](https:/
 
 ![](https://i.imgur.com/wC6W4VH.png)
 
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
-Install the gem and add to the application's Gemfile by executing:
-
-    $ bundle add rb-snake
-
-If bundler is not being used to manage dependencies, install the gem by executing:
+Install the gem
 
     $ gem install rb-snake
 
 ## Usage
 
-TODO: Write usage instructions here
+Run `rb-snake` on your terminal to start the game. Use the arrow keys on the keyboard to move the snake. Try to feed your snake as much as possible without hitting your own body!
 
 ## Development
 
