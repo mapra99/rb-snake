@@ -82,13 +82,13 @@ module RbSnake
       def handle_key_event(event, state)
         case event.key
         when "up"
-          Actions::ChangeDirection.call(state, new_direction: Models::Direction::UP)
+          Actions::ChangeDirection.call(state, self, new_direction: Models::Direction::UP)
         when "down"
-          Actions::ChangeDirection.call(state, new_direction: Models::Direction::DOWN)
+          Actions::ChangeDirection.call(state, self, new_direction: Models::Direction::DOWN)
         when "left"
-          Actions::ChangeDirection.call(state, new_direction: Models::Direction::LEFT)
+          Actions::ChangeDirection.call(state, self, new_direction: Models::Direction::LEFT)
         when "right"
-          Actions::ChangeDirection.call(state, new_direction: Models::Direction::RIGHT)
+          Actions::ChangeDirection.call(state, self, new_direction: Models::Direction::RIGHT)
         end
       end
     end
