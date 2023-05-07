@@ -6,10 +6,11 @@ module RbSnake
   module Actions
     class ChangeDirection
       class << self
-        def call(state, new_direction:)
+        def call(state, window, new_direction:)
           return unless valid_direction?(state.current_direction, new_direction)
 
           state.update_direction(new_direction)
+          MoveSnake.call(state, window)
         end
 
         private
